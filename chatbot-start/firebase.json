@@ -20,11 +20,10 @@
     },
     "singleProjectMode": true
   },
-  "extensions": {
-    "firestore-palm-chatbot": "googlecloud/firestore-palm-chatbot@0.1.7"
-  },
+  "extensions": {},
   "firestore": {
-    "rules": "firestore.rules"
+    "rules": "firestore.rules",
+    "indexes": "firestore.indexes.json"
   },
   "storage": {
     "rules": "storage.rules"
@@ -39,5 +38,26 @@
     "frameworksBackend": {
       "region": "us-east1"
     }
+  },
+  "database": {
+    "rules": "database.rules.json"
+  },
+  "functions": [
+    {
+      "source": "functions",
+      "codebase": "default",
+      "ignore": [
+        "node_modules",
+        ".git",
+        "firebase-debug.log",
+        "firebase-debug.*.log"
+      ],
+      "predeploy": [
+        "npm --prefix \"$RESOURCE_DIR\" run lint"
+      ]
+    }
+  ],
+  "remoteconfig": {
+    "template": "remoteconfig.template.json"
   }
 }
