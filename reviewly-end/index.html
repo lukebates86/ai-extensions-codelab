@@ -20,19 +20,89 @@
 		<meta charset="utf-8" />
 		<meta http-equiv="x-ua-compatible" content="ie=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Wallet UI Clone</title>
 		<link rel="stylesheet" href="css/main.css" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
-			href="https://fonts.googleapis.com/css?family=Roboto:400,700"
+			href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
 			rel="stylesheet"
-			type="text/css"
 		/>
 	</head>
 	<body>
-		<header class="header">Reviewly</header>
+		<main class="wallet-app">
+			<section class="phone-shell">
+				<header class="wallet-header">
+					<p class="wallet-header__subtitle">Wallet</p>
+					<h1>Cards</h1>
+				</header>
 
-		<div class="container">
-			<div class="original-reviews"></div>
-		</div>
+				<section class="card-stack" aria-label="Saved cards">
+					<article class="wallet-card card-gradient" id="walletCard">
+						<p class="wallet-card__label">Custom Card</p>
+						<p class="wallet-card__number" id="cardNumberDisplay">•••• •••• •••• 1234</p>
+						<div class="wallet-card__row">
+							<div>
+								<p class="wallet-card__caption">Card Holder</p>
+								<p id="cardNameDisplay">Your Name</p>
+							</div>
+							<div>
+								<p class="wallet-card__caption">Expires</p>
+								<p id="cardExpiryDisplay">08/29</p>
+							</div>
+						</div>
+					</article>
+				</section>
+
+				<section class="panel panel--help" aria-label="How to use this UI">
+					<h2>How to use this UI</h2>
+					<ol>
+						<li>Fill out your card name, number, and expiry.</li>
+						<li>Press <strong>Update card</strong> to refresh the card preview.</li>
+						<li>Add transaction rows to mock spending history and balance.</li>
+					</ol>
+					<p class="help-note">This is a static UI demo only — no real payments or wallet integration.</p>
+				</section>
+
+				<section class="panel" aria-label="Card details form">
+					<h2>Add your card details</h2>
+					<form id="cardForm" class="wallet-form">
+						<label>
+							Card holder name
+							<input type="text" id="cardName" placeholder="Jane Doe" required />
+						</label>
+						<label>
+							Card number
+							<input type="text" id="cardNumber" maxlength="19" placeholder="4242 4242 4242 4242" required />
+						</label>
+						<label>
+							Expiry (MM/YY)
+							<input type="text" id="cardExpiry" maxlength="5" placeholder="08/29" required />
+						</label>
+						<button type="submit">Update card</button>
+					</form>
+				</section>
+
+				<section class="panel" aria-label="Transactions">
+					<div class="section-title-row">
+						<h2>Recent transactions</h2>
+						<span class="balance-pill" id="balanceDisplay">Balance: $3,420.50</span>
+					</div>
+
+					<form id="transactionForm" class="transaction-form">
+						<input type="text" id="merchant" placeholder="Merchant name" required />
+						<input type="number" id="amount" step="0.01" placeholder="Amount" required />
+						<select id="type" aria-label="Transaction type">
+							<option value="debit">Payment</option>
+							<option value="credit">Deposit</option>
+						</select>
+						<button type="submit">Add</button>
+					</form>
+
+					<ul id="transactionList" class="transaction-list"></ul>
+				</section>
+			</section>
+		</main>
 
 		<script type="module" src="js/main.js"></script>
 	</body>
