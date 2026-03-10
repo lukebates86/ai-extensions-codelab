@@ -14,114 +14,233 @@
  * limitations under the License.
  */
 
+:root {
+	--bg: #ececf2;
+	--panel: rgba(255, 255, 255, 0.78);
+	--ink: #101322;
+	--muted: #5f6580;
+	--accent: #1f4dd8;
+	--danger: #d9384e;
+	--success: #1a8f46;
+}
+
 * {
 	box-sizing: border-box;
 }
 
-.header {
-	background: #add8e6;
-	text-align: center;
-	padding: 20px;
-	font-size: 25px;
-	border-bottom: 13px solid orange;
-}
-
 body {
-	font-family: "Roboto", sans-serif;
+	margin: 0;
+	font-family: "Inter", sans-serif;
+	background: radial-gradient(circle at 20% 20%, #f4f5fb, #d7dae8 70%);
+	color: var(--ink);
+	min-height: 100vh;
+	padding: 2rem 1rem;
 }
 
-.add-reviews {
-	font-size: 1rem;
-	padding: 14px;
+.wallet-app {
+	display: flex;
+	justify-content: center;
+}
+
+.phone-shell {
+	width: min(460px, 100%);
+	border-radius: 36px;
+	padding: 1.5rem;
+	background: rgba(11, 15, 35, 0.92);
+	box-shadow: 0 22px 45px rgba(8, 14, 35, 0.4);
+}
+
+.wallet-header {
+	color: white;
+	margin-bottom: 1rem;
+}
+
+.wallet-header h1,
+.panel h2 {
+	margin: 0;
+}
+
+.wallet-header__subtitle {
+	margin: 0;
+	font-size: 0.85rem;
+	color: #bbc5f6;
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+}
+
+.wallet-card {
+	border-radius: 22px;
+	padding: 1.25rem;
+	color: white;
+	box-shadow: 0 14px 22px rgba(0, 0, 0, 0.35);
+}
+
+.card-gradient {
+	background: linear-gradient(135deg, #4444f5, #6d2da8 60%, #dd6ea4);
+}
+
+.wallet-card__label {
+	margin: 0;
+	font-size: 0.9rem;
+	opacity: 0.9;
+}
+
+.wallet-card__number {
+	margin: 2rem 0 1.2rem;
+	font-size: 1.3rem;
+	letter-spacing: 0.06em;
+}
+
+.wallet-card__row {
+	display: flex;
+	justify-content: space-between;
+	gap: 1rem;
+}
+
+.wallet-card__caption {
+	margin: 0 0 0.2rem;
+	font-size: 0.75rem;
+	opacity: 0.8;
+	text-transform: uppercase;
+}
+
+.panel {
+	margin-top: 1rem;
+	background: var(--panel);
+	backdrop-filter: blur(8px);
+	padding: 1rem;
+	border-radius: 18px;
+}
+
+.wallet-form,
+.transaction-form {
+	display: grid;
+	gap: 0.7rem;
+	margin-top: 0.8rem;
+}
+
+.wallet-form label {
+	font-size: 0.86rem;
+	font-weight: 600;
+	color: var(--muted);
+	display: grid;
+	gap: 0.35rem;
+}
+
+
+.panel--help ol {
+	margin: 0.8rem 0 0;
+	padding-left: 1.2rem;
+	color: var(--muted);
+	font-size: 0.9rem;
+}
+
+.panel--help li + li {
+	margin-top: 0.35rem;
+}
+
+.help-note {
+	margin: 0.8rem 0 0;
+	font-size: 0.78rem;
+	color: var(--muted);
+}
+
+input,
+select,
+button {
+	font: inherit;
+	padding: 0.72rem 0.75rem;
+	border-radius: 12px;
+	border: 1px solid rgba(78, 87, 125, 0.25);
+}
+
+button {
+	background: var(--accent);
+	color: white;
+	border: 0;
+	font-weight: 600;
 	cursor: pointer;
 }
 
-.container,
-.header {
-	max-width: 700px;
-	margin: 0 auto;
+.transaction-form {
+	grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr) minmax(110px, auto) auto;
+	align-items: center;
 }
 
-.container {
-	padding-left: 20px;
-	padding-right: 20px;
+.transaction-form > * {
+	min-width: 0;
 }
 
-ul {
-	margin: 10px 0;
-	padding: 10px 0;
+.section-title-row {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 0.5rem;
 }
 
-.review__body {
-	margin: 22px 0;
-	& details {
-		cursor: pointer;
+.balance-pill {
+	font-size: 0.8rem;
+	background: rgba(31, 77, 216, 0.12);
+	color: var(--accent);
+	padding: 0.4rem 0.7rem;
+	border-radius: 999px;
+	font-weight: 600;
+}
 
-		& p {
-			font-style: italic;
-		}
+.transaction-list {
+	list-style: none;
+	margin: 0.9rem 0 0;
+	padding: 0;
+	display: grid;
+	gap: 0.65rem;
+}
 
-		& p {
-			margin-left: 2rem;
-		}
+.transaction-item {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0.75rem;
+	background: white;
+	border-radius: 12px;
+}
 
-		& details {
-			margin-left: 2rem;
-		}
+.transaction-item__meta p {
+	margin: 0;
+}
+
+.transaction-item__merchant {
+	font-weight: 600;
+}
+
+.transaction-item__time {
+	font-size: 0.78rem;
+	color: var(--muted);
+}
+
+.transaction-item__amount {
+	font-weight: 700;
+}
+
+.debit {
+	color: var(--danger);
+}
+
+.credit {
+	color: var(--success);
+}
+
+@media (max-width: 540px) {
+	.phone-shell {
+		padding: 1rem;
+		border-radius: 24px;
 	}
-}
 
-li:not(:has(details)) {
-	list-style-type: none;
-}
-
-li:has(details) {
-	list-style-type: disclosure-closed;
-}
-
-li:has(details[open]) {
-	list-style-type: disclosure-open;
-}
-
-.review__summary::marker {
-	display: none;
-	content: none;
-}
-
-.defect summary {
-	text-decoration-style: dotted;
-	text-decoration-line: underline;
-}
-
-.rating {
-	margin-left: 10px;
-}
-
-.reduction-percent {
-	color: #868686;
-	border-radius: 1.75rem;
-	font-size: 13px;
-}
-
-details code {
-	margin-left: 4rem;
-}
-
-details details summary {
-	font-family: monospace;
-}
-
-.stats {
-	outline: 1px solid lightgrey;
-	padding: 5px;
-	display: inline-block;
-	float: right;
-
-	& p {
-		margin: 0;
+	.transaction-form {
+		grid-template-columns: 1fr 1fr;
 	}
-}
 
-h2 {
-	margin-bottom: 2rem;
+	.transaction-form select,
+	.transaction-form button {
+		width: 100%;
+	}
 }
